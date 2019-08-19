@@ -7,7 +7,41 @@ Repository for instructions on  setting up a flask application using a Postgres 
 Above link is now unavailable because I have graduated from the nanodegree program.
 
 * Public IP address: 18.218.86.151
-* SSH port: 2200
+* SSH port:
+
+# Installed packages
+<table>
+  <tr>
+    <td><strong>NAME</strong></td>
+  </tr>
+  <tr>
+    <td>apache2</td>
+  </tr>
+  <tr>
+    <td>libapache2-mod-wsgi</td>
+  </tr>
+  <tr>
+    <td>finger</td>
+  </tr>
+  <tr>
+    <td>postgresql</td>
+  </tr>
+  <tr>
+    <td>sqlalchemy</td>
+  </tr>
+  <tr>
+    <td>flask</td>
+  </tr>
+  <tr>
+    <td>python-psycopg2</td>
+  </tr>
+  <tr>
+    <td>libpq-dev</td>
+  </tr>
+  <tr>
+    <td>python-dev</td>
+  </tr>
+</table>
 
 # Create a new Ubuntu server on Amazon Lightsail
 
