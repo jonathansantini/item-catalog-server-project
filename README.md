@@ -10,7 +10,6 @@ Above link is now unavailable because I have graduated from the nanodegree progr
 * SSH port: 2200
 
 # Create a new Ubuntu server on Amazon Lightsail
--------
 
 1. Create an AWS account.
 2. Select the Lightsail option in the main menu.
@@ -23,7 +22,6 @@ Above link is now unavailable because I have graduated from the nanodegree progr
 9. Finally, click the create instance button.
 
 # SSH into your new server
---------
 
 1. Find the ssh keys for your account and download the .pem file.
 2. Locate the public IP and username for your new aws server instance.
@@ -34,13 +32,11 @@ ssh <username>@<ip address> -p 22 -i ~/.ssh/<name of .pem file>
 ```
 
 # Update all installed packages
----------
 1. Run `sudo apt-get update` to update packages
 2. Run `sudo apt-get upgrade` to install newest versions of packages
 3. Set for future updates: `sudo apt-get dist-upgrade`
 
 # Update default SSH port to 2200
-----------
 The default SSH port for unix is 22.  In order to change that port to something like 2200, do the following.
 
 1. Run the following command:
@@ -52,7 +48,6 @@ The default SSH port for unix is 22.  In order to change that port to something 
 ```sudo service sshd restart```
 
 # Setup firewall
------------
 1. Check initial firewall status: `$ sudo ufw status`
 2. Set default firewall to deny all incomings: `$ sudo ufw default deny incoming`
 3. Set default firewall to allow all outgoings: `$ sudo ufw default allow outgoing`
@@ -66,13 +61,11 @@ The default SSH port for unix is 22.  In order to change that port to something 
 11. Open up a new terminal window and you can now ssh in via the new port 2200 instead of 22.
 
 # Configure the local timezone to UTC
-------------
 To set the server timezone to UTC, do the following:
 1. `$ sudo dpkg-reconfigure tzdata`
 2. `Select UTC`
 
 # Create a new account user called **grader**
-___________
 1. To create a new user, enter: `$ sudo adduser grader`
 2. Follow the prompts and give the new user a password.
 3. Copy default sudoer file and name it grader: `$ sudo cp /etc/sudoers.d/90-cloud-init-users /etc/sudoers.d/grader`
@@ -81,7 +74,6 @@ ___________
 6. Save and exit.
 
 # Create separate set of SSH login keys for **grader**
-------------
 1. On your local machine, use `ssh-keygen` to generate a new set of keys.
 2. Follow the prompts and add a client secret just in-case someone does get a hold of these keys.
 3. Go back to the server as the admin and create a `.ssh` folder for **grader** `$ sudo mkdir /home/grader/.ssh`
@@ -96,7 +88,6 @@ ___________
 9. Now you can open a new terminal window and ssh into the server as grader.
 
 # Install **Apache** and **mod_wsgi**
--------------
 1. `sudo apt-get install apache2`
 2. Go to your public ip address and you should see the default apache landing page.
 3. `sudo apt-get install sudo apt-get install libapache2-mod-wsgi python-dev`
@@ -104,7 +95,6 @@ ___________
 5. Restart Apache: `$ sudo service apache2 restart`
 
 # Install PostgreSQL
---------------
 1. Run `$ sudo apt-get install postgresql`
 2. Run `$ sudo apt-get install python-psycopg2`
 3. Run `$ sudo apt-get install libpq-dev`
@@ -130,7 +120,6 @@ host    all             all             ::1/128                 md5
 ```
 
 # Create a new user and DATABASE
------------
 1. Log into postgres: `$ sudo -u postgres psql`
 2. Create database: `postgres=# CREATE DATABASE categories;`
 3. Create new user: `postgres=# CREATE USER new_username;`
@@ -140,7 +129,6 @@ host    all             all             ::1/128                 md5
 7. Check changes by listing all users: `postgres=# \du`
 
 # Create .wsgi file
------------
 1. After installing application and modules, create a wsgi conflig file in root folder of application: `$ sudo vi <APP Name>.wsgi`
 2. Make sure the file looks like the following:
 ```
@@ -156,7 +144,6 @@ application.secret_key = '<secret key>'
 3. Restart Apache: `$ sudo service apache2 reload`
 
 # Create virtual host file
-------------
 1. Create file: `$ sudo touch /etc/apache2/sites-available/<app name>.conf`
 2. Add the following to the file:
 ```
@@ -183,12 +170,10 @@ application.secret_key = '<secret key>'
 5. If all went well, go to the public ip address and your landing page should be present.
 
 # Errors
---------------
 If errors are present, run the following command to display the server error log as you reload the site.
 `tail -f /var/log/apache2/error.log`
 
 # Sources
---------------
 1. [Amazon Lightsail](https://aws.amazon.com/lightsail/)
 2. [Google Developer Console](https://console.developers.google.com/)
 2. [Gavin Marsh](http://gavinmarsh.io/blog/amazon_lightsail/)
